@@ -1,9 +1,8 @@
 """ 
 app/models.py
-SQLAlchemy User and Tweet models for out database
+SQLAlchemy Class for create user and tweet table for our database
 """
 from flask_sqlalchemy import SQLAlchemy
-
 
 # create a DB Object from SQLAlchemy class
 DB = SQLAlchemy()
@@ -13,7 +12,7 @@ class User(DB.Model):
     """Create a table called user with SQlAlchemy, inheriting from DB.Model class.
     """
     id = DB.Column(DB.BigInteger, primary_key=True)
-    name = DB.Column(DB.String(50), unique=True)
+    name = DB.Column(DB.String, unique=True, nullable=False)
     newest_tweet_id = DB.Column(DB.BigInteger)
     
     def __repr__(self):
@@ -21,7 +20,7 @@ class User(DB.Model):
 
 # Create a Tweet table
 class Tweet(DB.Model):
-    """Creat a table called tweet that keeps track of Tweets for each user"""
+    """Creat a table called tweet that keeps track of tweets for each user"""
     id = DB.Column(DB.BigInteger, primary_key=True)
     text = DB.Column(DB.Unicode(300))  # allows for text and links
     vect = DB.Column(DB.PickleType, nullable=False) # converted text vectors are stored as pickle
@@ -34,18 +33,5 @@ class Tweet(DB.Model):
     def __repr__(self):
         return "<Tweet: {}>".format(self.text)
 
-# def insert_example_users():
-#     user1 =  User(id=1, name='April Ferguson')
-#     user2 = User(id=2, name='May Mulligan')
-#     DB.session.add(user1)
-#     DB.session.add(user2)
-#     DB.session.commit()
 
-"""
-To create all talbes, in flask shell:
-~~~
-from app.models import DB
-DB.create_all()
-~~~
-"""
 
