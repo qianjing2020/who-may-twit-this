@@ -24,17 +24,11 @@ def create_app():
         return render_template('base.html', title='Database reset done.') 
 
     @app.route('/')
-    def root():              
-        users = User.query.all()  
-        return render_template('base.html', title='home', users=users)
-        
-    @app.route('/update')
-    def update():
-        # TODO: Implementing a update all users route
-        # - Should update all current users in our DB
-        # - Should utilize the add_or_update_user function
-        return "User Added!"
+    def root():   
+        users = User.query.all() 
+        return render_template('base.html', title='Prediction', users=users)
 
+    # page show added/updated user    
     @app.route('/user', methods=["POST"])
     @app.route('/user/<name>', methods=["GET"])
     def user(name=None, message=''):
@@ -54,6 +48,7 @@ def create_app():
 
         return render_template("user.html", title=name, tweets=tweets, message=message)
 
+    # The comparison result page
     @app.route('/compare', methods=["POST"])
     def compare():
         user0, user1 = sorted(
@@ -66,7 +61,7 @@ def create_app():
             # prediction returns a 0 or 1
             prediction = predict_twitter(
                 user0, user1, request.values["tweet_text"])
-                
+
             message = "'{}' is more likely to be said by {} than {}!".format(
                 request.values["tweet_text"],
                 user1 if prediction else user0,

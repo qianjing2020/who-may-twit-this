@@ -2,7 +2,12 @@
 
 {% block content %}
   <div id="prediction">
-    <p>{{ title }}</p>
+    <p><b>{{ title }}</b></p>
     <p>{{ message }}</p>
+
+    <p><b>Limitation</b>: 
+      <br>The prediction uses spaCy work2vec model to vectorize tweet text. 
+      <br>A limited number of tweets (max 200 tweets/user) are used to train the model. 
+    </p>
   </div>
 {% endblock %}
