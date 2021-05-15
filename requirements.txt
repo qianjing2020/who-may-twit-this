@@ -24,6 +24,7 @@ packaging==20.9
 pathspec==0.8.1
 pathy==0.5.2
 preshed==3.0.5
+psycopg2-binary==2.8.6
 pydantic==1.7.4
 pyparsing==2.4.7
 PySocks==1.7.1
