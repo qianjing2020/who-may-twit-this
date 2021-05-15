@@ -11,7 +11,7 @@ def create_app():
     The main function brings everything together
     """
     app = Flask(__name__) # __name__: current path module
-    app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URI")
+    app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     
     DB.init_app(app) # initiate database
