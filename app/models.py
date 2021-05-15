@@ -3,7 +3,7 @@ app/models.py
 SQLAlchemy User and Tweet models for out database
 """
 from flask_sqlalchemy import SQLAlchemy
-from .twitter import add_or_update_user
+
 
 # create a DB Object from SQLAlchemy class
 DB = SQLAlchemy()
@@ -34,12 +34,12 @@ class Tweet(DB.Model):
     def __repr__(self):
         return "<Tweet: {}>".format(self.text)
 
-def insert_example_users():
-    user1 =  User(id=1, name='April Ferguson')
-    user2 = User(id=2, name='May Mulligan')
-    DB.session.add(user1)
-    DB.session.add(user2)
-    DB.session.commit()
+# def insert_example_users():
+#     user1 =  User(id=1, name='April Ferguson')
+#     user2 = User(id=2, name='May Mulligan')
+#     DB.session.add(user1)
+#     DB.session.add(user2)
+#     DB.session.commit()
 
 """
 To create all talbes, in flask shell:

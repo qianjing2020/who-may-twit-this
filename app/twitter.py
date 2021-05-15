@@ -19,10 +19,8 @@ def vectorize_tweet(tweet_text):
 # add user to db 
 def add_or_update_user(username):
     try:
+        # get twitter user
         twitter_user = TWITTER.get_user(username)
-        db_user = (User.query.get(twitter_user.id)) or User(id=twitter_user.id, name=username) # get or create
-        DB.session.add(db_user) # updated DB user table
-
         # get 200 tweets
         tweets = twitter_user.timeline(
             count=200, 
@@ -32,14 +30,21 @@ def add_or_update_user(username):
         ) 
 
         if tweets:
-            db_user.newest_tweet_id = tweets[0].id
+            newest_tweet_id = tweets[0].id
+        else:
+            newest_tweet_id = 0
 
+        db_user = (User.query.get(twitter_user.id)) or User(id=twitter_user.id, name=username, newest_tweet_id=newest_tweet_id) # get or create
+        DB.session.add(db_user) # updated DB user table     
+
+        
         # add each tweet into tweet table
         for tweet in tweets:
             vectorized_tweet =vectorize_tweet(tweet.full_text)
-            db_tweet = Tweet(id=tweet.id, 
+            db_tweet = Tweet(id=tweet.id,
             text=tweet.full_text,
-            vect=vectorized_tweet)
+            vect=vectorized_tweet,
+            user_id =db_user.id)
             
             db_user.tweets.append(db_tweet)
             DB.session.add(db_tweet)

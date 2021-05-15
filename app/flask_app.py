@@ -20,20 +20,20 @@ def create_app():
         add_or_update_user('nasa')
         
         users = User.query.all()  # query the user table
-        return render_template('templates/base.html', title='home', users=users)
+        return render_template('base.html', title='home', users=users)
         # "Hello, who-may-have-twitted-this!"
     
     @app.route('/update')
     def update():
         add_or_update_user('elonmusk')
         add_or_update_user('nasa')
-        return render_template('base.html', title='home', users=User.query.all())
+        return render_template('user.html', title='update', users=User.query.all())
 
     @app.route('/reset')
-    def update():
+    def reset():
         DB.drop_all()
         DB.create_all()
         
-        return render_template('base.html', title='home') 
+        return render_template('base.html', title='reset') 
 
     return app
