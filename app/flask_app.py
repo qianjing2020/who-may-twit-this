@@ -1,6 +1,6 @@
 """app/flask_app.py"""
 
-from os import getenv
+import os
 from flask import Flask, render_template, request
 from .models import DB, User
 from .twitter import add_or_update_user
@@ -11,8 +11,7 @@ def create_app():
     The main function brings everything together
     """
     app = Flask(__name__) # __name__: current path module
-    app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config.from_object(os.environ['APP_SETTINGS'])
     
     DB.init_app(app) # initiate database
 
