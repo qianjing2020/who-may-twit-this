@@ -5,7 +5,7 @@ Retrieve tweets and users then create embeddings and populate DB
 from os import getenv
 import tweepy
 import spacy
-from .models import DB, User, Tweet
+from twitcomp.models import DB, User, Tweet
 
 TWITTER_AUTH =  tweepy.OAuthHandler(
     getenv("TWITTER_API_KEY"), 

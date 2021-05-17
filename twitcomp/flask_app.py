@@ -2,20 +2,26 @@
 
 import os
 from flask import Flask, render_template, request
-from .models import DB, User
-from .twitter import add_or_update_user
-from .predict import predict_twitter
+from twitcomp.models import DB, User
+from twitcomp.twitter import add_or_update_user
+from twitcomp.predict import predict_twitter
+import commands
 
 def create_app():
-    """
-    The main function brings everything together
-    """
-    app = Flask(__name__) # __name__: current path module
-    app.config.from_object(os.environ['APP_SETTINGS'])
     
-    DB.init_app(app) # initiate database
+    app = Flask(__name__) # __name__: current path module
 
+    env_configuration = os.environ['APP_SETTING']
+    app.config.from_object(env_configuration)
+    """
+    For heroku deploy. Accordingly, add config var through CLI: $ heroku config:set APP_SETTING:config.ProductionConfig
+    """
+    # print(app.config)  # shows the dictionary of configuration
 
+    DB.init_app(app) # register database with flask app
+
+    # commands.init_app(app) # register commands with flask app
+ 
     @app.route('/reset')
     def reset():
         DB.drop_all()

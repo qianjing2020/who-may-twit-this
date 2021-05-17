@@ -4,8 +4,8 @@ Predict which user is more likely to twit a tweet of input text.
 """
 import numpy as np
 from sklearn import linear_model
-from .models import User
-from .twitter import vectorize_tweet
+from twitcomp.models import User
+from twitcomp.twitter import vectorize_tweet
 
 def predict_twitter(user0_name, user1_name, hypo_tweet_text):
     """
