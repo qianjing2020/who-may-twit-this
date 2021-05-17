@@ -4,7 +4,7 @@ config.py
 Configurations in a single file
 
 To use DevelopmentConfig, in terminal cli:
-$ export APP_SETTING="config.DevelopmentConfig"
+$ export APP_SETTINGS="config.DevelopmentConfig"
 """
 
 import os
@@ -24,20 +24,20 @@ class Config(object):
     TWITTER_API_SECRET = os.environ.get("TWITTER_API_SECRET")
     TWITTER_ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN")
     TWITTER_ACCESS_TOKEN_SECRET = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET")
-    DATABASE_URL = "sqlite:///db.sqlite3"
-
-# dev config
-class DevelopmentConfig(Config):
-    ENV = "development"
-    DEVELOPMENT = True
-    SQLALCHEMY_TRACK_MODIFICATIONS = False    
+    #DATABASE_URL = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'db.sqlite3')
 
 # product config
 class ProductionConfig(Config):
     Env = "production" # actually the default of flask
     DEBUG = False
-    DATABASE_URL = os.environ.get('DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 
+# dev config
+class DevelopmentConfig(Config):
+    ENV = "development"
+    DEVELOPMENT = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = False   
+    DATABASE_URL = "sqlite:///db.sqlite3"
 
 # test config
 class TestingConfig(Config):
