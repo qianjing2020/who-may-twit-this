@@ -11,10 +11,10 @@ def create_app():
     
     app = Flask(__name__) # __name__: current path module
 
-    env_configuration = os.environ['APP_SETTING']
+    env_configuration = os.environ['APP_SETTINGS']
     app.config.from_object(env_configuration)
     """
-    For heroku deploy. Accordingly, add config var through CLI: $ heroku config:set APP_SETTING:config.ProductionConfig
+    For heroku deploy. Accordingly, add config var through CLI: $ heroku config:set APP_SETTINGS:config.ProductionConfig
     """
     # print(app.config)  # shows the dictionary of configuration
 
