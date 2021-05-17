@@ -2,15 +2,17 @@
 Retrieve tweets and users then create embeddings and populate DB
 """
 
-from os import getenv
+import os
 import tweepy
 import spacy
 from twitcomp.models import DB, User, Tweet
 
 TWITTER_AUTH =  tweepy.OAuthHandler(
-    getenv("TWITTER_API_KEY"), 
-    getenv("TWITTER_API_SECRET")
+    os.environ.get("TWITTER_API_KEY"), 
+    os.environ.get("TWITTER_API_SECRET")
     )
+TWITTER_AUTH.set_access_token(os.environ.get("TWITTER_ACCESS_TOKEN"), os.environ.get("TWITTER_ACCESS_TOKEN_SECRET"))
+
 TWITTER = tweepy.API(TWITTER_AUTH)
 
 # lodas the nlp model that vectorize text

@@ -22,6 +22,8 @@ class Config(object):
     
     TWITTER_API_KEY = os.environ.get("TWITTER_API_KEY")
     TWITTER_API_SECRET = os.environ.get("TWITTER_API_SECRET")
+    TWITTER_ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN")
+    TWITTER_ACCESS_TOKEN_SECRET = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET")
     DATABASE_URL = "sqlite:///db.sqlite3"
 
 # dev config
