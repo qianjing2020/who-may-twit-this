@@ -12,8 +12,6 @@ from dotenv import load_dotenv
 
 load_dotenv
 
-#basedir = os.path.abspath(os.path.dirname(__file__))
-
 # base configuration
 class Config(object):
     DEBUG = False
@@ -24,7 +22,7 @@ class Config(object):
     TWITTER_API_SECRET = os.environ.get("TWITTER_API_SECRET")
     TWITTER_ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN")
     TWITTER_ACCESS_TOKEN_SECRET = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET")
-    #DATABASE_URL = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'db.sqlite3')
+    
 
 # product config
 class ProductionConfig(Config):
