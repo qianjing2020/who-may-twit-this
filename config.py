@@ -30,7 +30,7 @@ class Config(object):
 class ProductionConfig(Config):
     Env = "production" # actually the default of flask
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+    DATABASE_URL = os.environ.get('DATABASE_URL')
 
 # dev config
 class DevelopmentConfig(Config):

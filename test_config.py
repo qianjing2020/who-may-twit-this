@@ -2,7 +2,7 @@ from flask import Flask
 import os
 
 app = Flask(__name__)
-env_configuration = os.environ['CONFIGURATION_SETUP']
+env_configuration = os.environ['APP_SETTINGS']
 
 
 app.config.from_object(env_configuration)
