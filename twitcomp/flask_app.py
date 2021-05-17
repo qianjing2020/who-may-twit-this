@@ -20,7 +20,7 @@ def create_app():
 
     DB.init_app(app) # register database with flask app
 
-    # commands.init_app(app) # register commands with flask app
+    commands.init_app(app) # register commands with flask app
  
     @app.route('/reset')
     def reset():
