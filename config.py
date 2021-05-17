@@ -4,7 +4,7 @@ config.py
 Configurations in a single file
 
 To use DevelopmentConfig, in terminal cli:
-$ export CONFIGURATION_SETUP="config.DevelopmentConfig"
+$ export APP_SETTING="config.DevelopmentConfig"
 """
 
 import os
@@ -34,7 +34,7 @@ class DevelopmentConfig(Config):
 class ProductionConfig(Config):
     Env = "production" # actually the default of flask
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+    DATABASE_URL = os.environ.get('DATABASE_URL')
 
 
 # test config
