@@ -26,12 +26,12 @@ def create_app():
     def reset():
         DB.drop_all()
         DB.create_all()        
-        return render_template('base.html', title='Database reset done.') 
+        return render_template('base.html', title='Database reset') 
 
     @app.route('/')
     def root():   
         users = User.query.all() 
-        return render_template('base.html', title='Prediction', users=users)
+        return render_template('base.html', title='twitcomp_main', users=users)
 
     # page show added/updated user    
     @app.route('/user', methods=["POST"])
